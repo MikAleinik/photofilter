@@ -1,0 +1,297 @@
+:root {
+  --font__size  : 18px;
+
+  --foto__heigth: 100%;
+  --foto__width : 100%;
+  --foto__blur: 0%;
+  --foto__invert: 0%;
+  --foto__sepia: 0;
+  --foto__grayscale: 0;
+  --foto__contrast: 1;
+  --foto__brightness: 1;
+  --foto__opacity: 1;
+  --foto__rotate: 0;
+
+  --foto-preset__heigth: 80%;
+  --foto-preset__width : 80%;
+
+  --theme__white__background__color: #FFFFFF;
+  --theme__white__text__color      : #000000;
+
+  --theme__gray__background__color: #808080;
+  --theme__gray__text__color      : #006400;
+
+  --theme__dark__background__color: #000000;
+  --theme__dark__text__color      : #D2B48C;
+
+  --range__background__color: #FFFFFF;
+  --range__text__color      : #000000;
+}
+
+.theme__white {
+  background: var(--theme__white__background__color);
+  color     : var(--theme__white__text__color);
+}
+
+.theme__gray {
+  background: var(--theme__gray__background__color);
+  color     : var(--theme__gray__text__color);
+}
+
+.theme__dark {
+  background: var(--theme__dark__background__color);
+  color     : var(--theme__dark__text__color);
+}
+
+html {
+  height: 100vh;
+
+  margin : 0 auto;
+  padding: 0;
+}
+
+body {
+  height: 100%;
+  width : 100%;
+
+  display        : flex;
+  flex-direction : column;
+  justify-content: space-around;
+
+  margin : 0 auto;
+  padding: 0;
+  overflow: hidden;
+
+  font-family: 'Pangolin';
+  font-size  : var(--font__size); 
+}
+
+main {
+  display        : flex;
+  flex-direction : row;
+  justify-content: space-around;
+  height         : 100%;
+  width          : 100%;
+}
+
+input[type="range"] {
+  width: 50%;
+
+  margin : 1%;
+  padding: 1%;
+
+  background: inherit;
+  appearance: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  border: 1px solid;
+  border-radius: 4px;
+
+  background: var(--range__background__color);
+  color     : var(--range__text__color);
+}
+
+input[type='range']::-webkit-slider-thumb {
+  margin-top: -6px;
+  -webkit-appearance: none;
+
+  width: 32px;
+  height: 16px;
+  border: 1px solid var(--range__text__color);
+  border-radius: 3px;
+  cursor: ew-resize;
+  background: var(--range__background__color);
+}
+
+input[type="text"] {
+  width: 8%;
+
+  margin : 1%;
+  padding: 1%;
+
+  text-align: center;
+  font-size: 1em;
+
+  background-color: inherit;
+  color           : inherit;
+}
+
+label {
+  width: 30%;
+
+  margin : 1%;
+  padding: 1%;
+
+  font-size: 1em;
+
+  text-align: center;
+}
+
+h1 {
+  margin   : 0 auto;
+  font-size: 2.5em;
+}
+
+button {
+  padding: 10px;
+  border-radius: 20px;
+  border: 2px solid;
+  background: inherit;
+  color: inherit;
+
+  transition: 1s;
+}
+
+button:disabled {
+  filter: opacity(0.5);
+}
+
+button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+button:disabled:hover {
+  transform: scale(1);
+  cursor: not-allowed;
+}
+
+.header {
+  display       : flex;
+  flex-direction: row;
+  align-items   : center;
+
+  margin: 10px 0px 0px 0px;
+}
+
+.header__theme {
+  display       : flex;
+  flex-direction: row;
+  align-items   : center;
+  height        : 100%;
+  width         : 5%;
+
+  margin-right: 5.5%;
+}
+
+.header__theme label {
+  margin : 5%;
+  padding: 1%;
+
+  border: 1px solid;
+}
+
+.header__theme label:hover {
+  cursor: pointer;
+}
+
+.foto {
+  display        : flex;
+  flex-direction : column;
+  justify-content: center;
+  align-items    : center;
+  height         : 100%;
+  width          : 60%;
+}
+
+.foto label {
+  margin: 0 auto;
+}
+
+.foto__container {
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  height: 100%;
+  width : 100%;
+
+  margin: 1%;
+
+  border: 2px solid;
+}
+
+.foto .foto__container {
+  max-height: 100%;
+  max-width : 100%;
+  height: 70%;
+  width : 80%;
+}
+
+.foto__image {
+  display: none;
+  max-height: 100%;
+  max-width : 100%;
+  height    : var(--foto__heigth);
+  width     : var(--foto__width);
+  
+  filter: hue-rotate(var(--foto__rotate)) opacity(var(--foto__opacity)) brightness(var(--foto__brightness)) contrast(var(--foto__contrast)) grayscale(var(--foto__grayscale)) sepia(var(--foto__sepia)) blur(var(--foto__blur)) invert(var(--foto__invert));
+}
+
+.foto__container .foto__label {
+  font-size: 1.5em;
+}
+
+.foto-preset {
+  display        : flex;
+  flex-direction : row;
+  justify-content: space-around;
+  height         : 15%;
+  width          : 80%;
+}
+
+.foto-preset .foto__container {
+  transition: 1s;
+}
+
+.foto-preset .foto__container:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.foto__preset-image {
+  max-height: 100%;
+  max-width : 100%;
+  height    : var(--foto-preset__heigth);
+  width     : var(--foto-preset__width);
+  filter: hue-rotate(0deg) opacity(0) brightness(0) contrast(0) grayscale(0) sepia(0) blur(0px) invert(0);
+}
+
+.control {
+  display        : flex;
+  flex-direction : column;
+  justify-content: center;
+  align-items    : flex-end;
+  height         : 100%;
+  width          : 40%;
+}
+
+.control__element {
+  display        : flex;
+  flex-direction : row;
+  justify-content: flex-end;
+  width          : 100%;
+}
+
+.control__element label {
+  text-align: end;
+}
+
+.control__operation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 10%;
+  width: 70%;
+}
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select  : none;
+  -khtml-user-select   : none;
+  -moz-user-select     : none;
+  -ms-user-select      : none;
+  user-select          : none;
+}

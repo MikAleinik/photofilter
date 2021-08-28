@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>PhotoFilter</title>
+</head>
+
+<body class="theme__white" onload="init();">
+  <header class="header">
+    <h1>Photofilter</h1>
+    <section class="header__theme">
+      <label class="theme__white unselectable" onclick="selectTheme(this);">&nbsp</label>
+      <label class="theme__gray unselectable" onclick="selectTheme(this);">&nbsp</label>
+      <label class="theme__dark unselectable" onclick="selectTheme(this);">&nbsp</label>
+    </section>
+  </header>
+  <main>
+    <section class="control">
+      <section class="control__element">
+        <label>Size</label>
+        <input id="sizeRange" type="range" min="0" max="100" value="100"
+          oninput="changeRange(this);setSizeFoto(this.value);">
+        <input id="sizeText" type="text" min="0" max="100" value="100"
+          oninput="changeTextRange(this);setSizeFoto(this.value);">
+      </section>
+      <section class="control__element">
+        <label>Blur</label>
+        <input id="blurRange" type="range" min="0" max="100" value="0" oninput="changeRange(this);setBlur(this.value);">
+        <input id="blurText" type="text" min="0" max="100" value="0"
+          oninput="changeTextRange(this);setBlur(this.value);">
+      </section>
+      <section class="control__element">
+        <label>Inverse</label>
+        <input id="invertRange" type="range" min="0" max="100" value="0"
+          oninput="changeRange(this);setInvert(this.value);">
+        <input id="invertText" type="text" min="0" max="100" value="0"
+          oninput="changeTextRange(this);setInvert(this.value);">
+      </section>
+      <section class="control__element">
+        <label>Sepia</label>
+        <input id="sepiaRange" type="range" min="0" max="100" value="0"
+          oninput="changeRange(this);setSepia(this.value);">
+        <input id="sepiaText" type="text" min="0" max="100" value="0"
+          oninput="changeTextRange(this);setSepia(this.value);">
+      </section>
+      <section class="control__element">
+        <label>Grayscale</label>
+        <input id="grayRange" type="range" min="0" max="100" value="0" oninput="changeRange(this);setGray(this.value);">
+        <input id="grayText" type="text" min="0" max="100" value="0"
+          oninput="changeTextRange(this);setGray(this.value);">
+      </section>
+      <section class="control__element">
+        <label>Contrast</label>
+        <input id="contrastRange" type="range" min="0" max="200" value="100"
+          oninput="changeRange(this);setContrast(this.value);">
+        <input id="contrastText" type="text" min="0" max="200" value="100"
+          oninput="changeTextRange(this);setContrast(this.value);">
+      </section>
+      <section class="control__element">
+        <label>Brightness</label>
+        <input id="brightnessRange" type="range" min="0" max="200" value="100"
+          oninput="changeRange(this);setBrightness(this.value)">
+        <input id="brightnessText" type="text" min="0" max="200" value="100"
+          oninput="changeTextRange(this);setBrightness(this.value)">
+      </section>
+      <section class="control__element">
+        <label>Opacity</label>
+        <input id="opacityRange" type="range" min="0" max="100" value="100"
+          oninput="changeRange(this);setOpacity(this.value)">
+        <input id="opacityText" type="text" min="0" max="100" value="100"
+          oninput="changeTextRange(this);setOpacity(this.value)">
+      </section>
+      <section class="control__element">
+        <label>Rotate color</label>
+        <input id="rotateRange" type="range" min="0" max="360" value="0"
+          oninput="changeRange(this);setRotate(this.value)">
+        <input id="rotateText" type="text" min="0" max="360" value="0"
+          oninput="changeTextRange(this);setRotate(this.value)">
+      </section>
+      <section class="control__operation">
+        <button onclick="loadFile();">Open picture</button>
+        <input id="loadFile" type="file" style="display: none;">
+
+        <button id="buttonSaveFile" disabled onclick="saveFile();">Save picrure</button>
+        <a id="saveFile" href="" style="display: none;" download="result.jpg"></a>
+      </section>
+    </section>
+
+    <section class="foto">
+      <figure class="foto__container">
+        <canvas id="fotoImage" class="foto__image" src="./assets/jpg/load-foto.png">
+          <img id="fotoLoadedImage" src="./assets/jpg/load-foto.png" style="display: none;">
+        </canvas>
+        <label class="foto__label">Please open new picture...</label>
+      </figure>
+      <label id="fotoName">Name foto</label>
+
+      <section class="foto-preset">
+        <figure id="presetOne" class="foto__container" onclick="selectPreset(this);">
+          <img id="fotoImagePresetOne" class="foto__preset-image" src="./assets/jpg/default-foto.jpg" alt="foto">
+        </figure>
+        <figure id="presetTwo" class="foto__container" onclick="selectPreset(this);">
+          <img id="fotoImagePresetTwo" class="foto__preset-image" src="./assets/jpg/default-foto.jpg" alt="foto">
+        </figure>
+        <figure id="presetThree" class="foto__container" onclick="selectPreset(this);">
+          <img id="fotoImagePresetThree" class="foto__preset-image" src="./assets/jpg/default-foto.jpg" alt="foto">
+        </figure>
+        <figure id="presetFour" class="foto__container" onclick="selectPreset(this);">
+          <img id="fotoImagePresetFour" class="foto__preset-image" src="./assets/jpg/default-foto.jpg" alt="foto">
+        </figure>
+        <figure id="presetFive" class="foto__container" onclick="selectPreset(this);">
+          <img id="fotoImagePresetFive" class="foto__preset-image" src="./assets/jpg/default-foto.jpg" alt="foto">
+        </figure>
+      </section>
+
+    </section>
+
+  </main>
+
+  <script src="./js/photofilter.js"></script>
+</body>
+
+</html>
