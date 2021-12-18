@@ -1,2 +1,2 @@
 # photofilter
-RS School task
+RS School training task
